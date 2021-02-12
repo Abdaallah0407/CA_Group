@@ -49,6 +49,12 @@ def search(request):
         if state:
             
             queryset_list = queryset_list.filter(state__iexact=state)
+    # Price
+    if 'price' in request.GET:
+        price = request.GET['price']
+        if price:
+            queryset_list = queryset_list.filter(
+                price__iexact=price)
 
     context = {
         'state_choices': state_choices,

@@ -2,6 +2,8 @@
 
 {% load humanize%}
 
+{% block title %} | Welcome {% endblock %}
+
 {% load static %}
 
 {% block content %}
@@ -20,48 +22,30 @@
                     <form action="{% url 'search' %}">
                         <!-- Form Row 1 -->
                         <div class="form-row">
-                            <div class="col-md-4 mb-3">
+                            <div class="col-md-6 mb-3">
                                 <label class="sr-only">Keywords</label>
-                                <input type="text" name="keywords" class="form-control"
-                                    placeholder="Keyword (Pool, Garage, etc)">
+                                <input type="text" name="keywords" class="form-control" placeholder="Поиск (........)">
                             </div>
 
-                            <div class="col-md-4 mb-3">
+                            <div class="col-md-6 mb-3">
                                 <label class="sr-only">City</label>
-                                <input type="text" name="city" class="form-control" placeholder="City">
-                            </div>
-
-                            <div class="col-md-4 mb-3">
-                                <label class="sr-only">State</label>
-                                <select name="state" class="form-control">
-                                    <option selected="true" disabled="disabled">State (All)</option>
-                                    {% for key,value in state_choices.items %}
-                                        <option value="{{ value }}">{{ value }}</option>
-                                    {% endfor %}
-                                </select>
+                                <input type="text" name="city" class="form-control" placeholder="Город">
                             </div>
                         </div>
                         <!-- Form Row 2 -->
                         <div class="form-row">
                             <div class="col-md-6 mb-3">
-                                <label class="sr-only">Bedrooms</label>
-                                <select name="bedrooms" class="form-control">
-                                    <option selected="true" disabled="disabled">Bedrooms (All)</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
+                                <label class="sr-only">State</label>
+                                <select name="state" class="form-control">
+                                    <option selected="true" disabled="disabled">Область (Все)</option>
+                                    {% for key,value in state_choices.items %}
+                                    <option value="{{ value }}">{{ value }}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <select name="price" class="form-control" id="type">
-                                    <option selected="true" disabled="disabled">Max Price (Any)</option>
+                                    <option selected="true" disabled="disabled">Мак Цена (Any)</option>
                                     {% for key,value in price_choices.items %}
                                     <option value="{{key}}">{{ value }}</option>
                                     {% endfor %}
@@ -76,6 +60,8 @@
     </div>
 </section>
 
+{% include 'partials/_alerts.html' %}
+
 <!-- Listings -->
 <section id="listings" class="py-5">
     <div class="container">
@@ -86,7 +72,7 @@
             <!-- Listing 1 -->
             <div class="col-md-6 col-lg-4 mb-4">
                 <div class="card listing-preview">
-                    <img class="card-img-top" src="{{listing.photo_main.url}}" alt="">
+                    <img class="card-img-top" src="{{listing.photo_main.url}}" alt="" height="300">
                     <div class="card-img-overlay">
                         <h2>
                             <span class="badge badge-secondary text-white">{{ listing.price }} С</span>

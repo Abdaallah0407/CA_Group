@@ -1,9 +1,20 @@
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+#main-footer {
+  margin-top: auto;
+}
+
 .btn-secondary {
   color: #fff !important;
 }
 
 img {
   width: 100%;
+  object-fit: cover;
 }
 
 .rounded-circle {
